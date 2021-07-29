@@ -1,16 +1,39 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, CardImg, CardText, CardTitle, Media, CardSubtitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function About(props) {
+function RenderLeader(props) {
+    return (
+        <Card>
+            <div class="row">
+                <div className="col-md-3">
+                    <CardImg variant="top" src={props.leader.image} />
+                </div>
+                <div className="col-md-9">
+                    <CardBody>
+                        <CardTitle><h4>{props.leader.name}</h4></CardTitle>
+                        <CardSubtitle className="mb-2 text-muted">{props.leader.designation}</CardSubtitle>
+                        <CardText>
+                            {props.leader.description}
+                        </CardText>
+                    </CardBody>
+                </div>
+            </div>
+        </Card>
+    )
+}
+
+const About = (props) => {
 
     const leaders = props.leaders.map((leader) => {
         return (
-            <p>Leader {leader.name}</p>
+            <div className="col-12 mb-3" key={leader.id}>
+                <RenderLeader leader={leader} />
+            </div>
         );
     });
 
-    return(
+    return (
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -20,7 +43,7 @@ function About(props) {
                 <div className="col-12">
                     <h3>About Us</h3>
                     <hr />
-                </div>                
+                </div>
             </div>
             <div className="row row-content">
                 <div className="col-12 col-md-6">
@@ -49,11 +72,11 @@ function About(props) {
                     <Card>
                         <CardBody className="bg-faded">
                             <blockquote className="blockquote">
-                                <p className="mb-0">You better cut the pizza in four pieces because
+                                <p className="mb-4">You better cut the pizza in four pieces because
                                     I'm not hungry enough to eat six.</p>
                                 <footer className="blockquote-footer">Yogi Berra,
-                                <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
-                                    P. Pepe, Diversion Books, 2014</cite>
+                                    <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
+                                        P. Pepe, Diversion Books, 2014</cite>
                                 </footer>
                             </blockquote>
                         </CardBody>
@@ -61,7 +84,7 @@ function About(props) {
                 </div>
             </div>
             <div className="row row-content">
-                <div className="col-12">
+                <div className="col-12 mb-3">
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
@@ -74,4 +97,4 @@ function About(props) {
     );
 }
 
-export default About;    
+export default About;
