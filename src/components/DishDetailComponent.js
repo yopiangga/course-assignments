@@ -35,7 +35,7 @@ class DishDetail extends Component {
                 return (
                     <ListGroupItem key={el.id} as="li" className="list-unstyled">
                         <CardText>{el.comment}</CardText>
-                        <CardText>-- {el.author}, {el.date}</CardText>
+                        <CardText>-- {el.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(el.date)))}</CardText>
                     </ListGroupItem>
                 )
             })
