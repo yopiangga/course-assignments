@@ -4,6 +4,7 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 function RenderDish(dish) {
+    console.log(dish)
     if (dish != null) {
         return (
             <Card>
@@ -22,7 +23,7 @@ function RenderDish(dish) {
 }
 
 function RenderComments(dish) {
-    if (dish == null) {
+    if (dish == null || dish.comments == null) {
         return (
             <div></div>
         )
