@@ -13,9 +13,7 @@ class Contact extends Component{
     constructor(props){
         super(props);
 
-        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleBlur = this.handleBlur.bind(this);
     }
 
     handleSubmit(values) {
