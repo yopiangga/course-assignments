@@ -4,7 +4,6 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 function RenderDish(dish) {
-    console.log(dish)
     if (dish != null) {
         return (
             <Card>
@@ -22,13 +21,13 @@ function RenderDish(dish) {
     }
 }
 
-function RenderComments(dish) {
-    if (dish == null || dish.comments == null) {
+function RenderComments(comments) {
+    if (comments == null) {
         return (
             <div></div>
         )
     } else {
-        const element = dish.comments.map(function (el) {
+        const element = comments.map(function (el) {
             return (
                 <ListGroupItem key={el.id} as="li" className="list-unstyled">
                     <CardText>{el.comment}</CardText>
@@ -66,7 +65,7 @@ const DishDetail = (props) => {
                     {RenderDish(props.dish)}
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    {RenderComments(props.dish)}
+                    {RenderComments(props.comments)}
                 </div>
             </div>
         </div>
