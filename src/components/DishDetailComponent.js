@@ -4,10 +4,11 @@ import {
     Breadcrumb, BreadcrumbItem,
     Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Button, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Input, Label, Col, 
+    Form, FormGroup, Input, Label, Col,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent'
 
 function RenderDish(dish) {
     if (dish != null) {
@@ -48,7 +49,7 @@ function RenderComments(comments, addComment, dishId) {
                 <ListGroup as="ul" className="mb-3">
                     {element}
                 </ListGroup>
-                <CommentForm dishId={dishId} addComment={addComment}/>
+                <CommentForm dishId={dishId} addComment={addComment} />
             </div>
         )
     }
@@ -98,7 +99,7 @@ class CommentForm extends Component {
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </Control.select>
-                                    
+
                                 </Col>
                             </Row>
                             <Row className="form-group mb-2">
@@ -153,28 +154,49 @@ class CommentForm extends Component {
 
 
 const DishDetail = (props) => {
-    return (
-        <div className="container">
-            <div className="row">
-                <Breadcrumb>
-                    <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
-                </Breadcrumb>
-                <div className="col-12">
-                    <h3>{props.dish.name}</h3>
-                    <hr />
+    if (props.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
                 </div>
             </div>
-            <div className="row justify-content-center">
-                <div className="col-12 col-md-5 m-1">
-                    {RenderDish(props.dish)}
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    {RenderComments(props.comments, props.addComment, props.dish.id)}
+        )
+    } else if (props.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.errMess}</h4>
                 </div>
             </div>
-        </div>
-    )
+        )
+    } else if (props.dish != null)
+        return (
+            <div className="container">
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{props.dish.name}</h3>
+                        <hr />
+                    </div>
+                </div>
+                <div className="row justify-content-center">
+                    <div className="col-12 col-md-5 m-1">
+                        {RenderDish(props.dish)}
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        {RenderComments(props.comments, props.addComment, props.dish.id)}
+                    </div>
+                </div>
+            </div>
+        )
+    else
+        return (
+            <div></div>
+        )
 }
 
 export default DishDetail;
