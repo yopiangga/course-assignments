@@ -27,7 +27,7 @@ function RenderDish(dish) {
     }
 }
 
-function RenderComments(comments) {
+function RenderComments(comments, addComment, dishId) {
     if (comments == null) {
         return (
             <div></div>
@@ -48,7 +48,7 @@ function RenderComments(comments) {
                 <ListGroup as="ul" className="mb-3">
                     {element}
                 </ListGroup>
-                <CommentForm />
+                <CommentForm dishId={dishId} addComment={addComment}/>
             </div>
         )
     }
@@ -76,8 +76,9 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        // console.log('Current State is: ' + JSON.stringify(values));
+        // alert('Current State is: ' + JSON.stringify(values));
     }
     render() {
         return (
@@ -101,9 +102,9 @@ class CommentForm extends Component {
                                 </Col>
                             </Row>
                             <Row className="form-group mb-2">
-                                <Label htmlFor="lastname" md={2}>Author</Label>
+                                <Label htmlFor="author" md={2}>Author</Label>
                                 <Col md={10}>
-                                    <Control.text model=".name" id="name" name="name"
+                                    <Control.text model=".author" id="author" name="author"
                                         placeholder="Your Name"
                                         className="form-control"
                                         validators={{
@@ -112,7 +113,7 @@ class CommentForm extends Component {
                                     />
                                     <Errors
                                         className="text-danger"
-                                        model=".name"
+                                        model=".author"
                                         show="touched"
                                         messages={{
                                             minLength: 'Must be greater than 2 characters ',
@@ -169,7 +170,7 @@ const DishDetail = (props) => {
                     {RenderDish(props.dish)}
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    {RenderComments(props.comments)}
+                    {RenderComments(props.comments, props.addComment, props.dish.id)}
                 </div>
             </div>
         </div>
