@@ -1,10 +1,9 @@
 import { Component } from "react";
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, ListGroup, ListGroupItem, Row } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, ListGroup, ListGroupItem, Row } from 'reactstrap';
 import {
     Breadcrumb, BreadcrumbItem,
-    Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Button, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Input, Label, Col,
+    Label, Col,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';

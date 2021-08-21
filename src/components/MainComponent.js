@@ -1,10 +1,9 @@
 import { Component } from "react";
-import { Navbar, NavbarBrand } from "reactstrap";
 import DishDetail from "./DishDetailComponent";
 import Menu from "./MenuComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Home from "./HomeComponent";
 import Contact from "./ContactComponent";
 import About from "./AboutComponent";
