@@ -29,7 +29,7 @@ function RenderDish(dish) {
     }
 }
 
-function RenderComments(comments, addComment, dishId) {
+function RenderComments(comments, postComment, dishId) {
     if (comments == null) {
         return (
             <div></div>
@@ -50,7 +50,7 @@ function RenderComments(comments, addComment, dishId) {
                 <ListGroup as="ul" className="mb-3">
                     {element}
                 </ListGroup>
-                <CommentForm dishId={dishId} addComment={addComment} />
+                <CommentForm dishId={dishId} postComment={postComment} />
             </div>
         )
     }
@@ -78,7 +78,7 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
         // console.log('Current State is: ' + JSON.stringify(values));
         // alert('Current State is: ' + JSON.stringify(values));
     }
@@ -189,7 +189,7 @@ const DishDetail = (props) => {
                         {RenderDish(props.dish)}
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        {RenderComments(props.comments, props.addComment, props.dish.id)}
+                        {RenderComments(props.comments, props.postComment, props.dish.id)}
                     </div>
                 </div>
             </div>
